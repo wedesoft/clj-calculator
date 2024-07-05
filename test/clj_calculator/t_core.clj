@@ -1,5 +1,6 @@
 (ns clj-calculator.t-core
   (:require [midje.sweet :refer :all]
+            [instaparse.core :as insta]
             [clj-calculator.core :refer :all]))
 
 (facts "Test parser"
@@ -14,3 +15,9 @@
        (calculate "1 + 2") => 3
        (calculate "5 - 4") => 1
        (calculate "2 * 3") => 6)
+
+(facts "Recursive grammar"
+       (calculate "2 - 1 + 3") => 4
+       (count (insta/parses calc-parser "2 - 1 + 3")) => 1
+       (calculate "2 - ( 1 + 3 )") => -2
+       (calculate "( 2 - 1 ) + 3") => 4)
