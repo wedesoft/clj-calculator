@@ -1,0 +1,12 @@
+{:deps {org.clojure/clojure {:mvn/version "1.11.3"}
+        instaparse/instaparse {:mvn/version "1.5.0"}}
+ :paths ["src"]
+ :aliases
+ {:test
+  {:extra-deps
+   {midje/midje {:mvn/version "1.10.9"}
+    midje-runner/midje-runner
+    {:git/url "https://github.com/wedesoft/midje-runner.git"
+     :git/sha "8ceb29d5781b9fc43ad4116fc645ade797342fad"}}
+   :extra-paths ["test"]
+   :main-opts ["-m" "midje-runner.runner"]}}}
